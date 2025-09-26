@@ -2,6 +2,8 @@
 // https://developer.tbank.ru/eacq/api/get-qr
 ////////////////////////////////////////////////////
 
+using TinkoffPaymentClientApi.Enums;
+
 namespace TinkoffPaymentClientApi.Commands {
   /// <summary>
   /// Сформировать QR
@@ -16,13 +18,13 @@ namespace TinkoffPaymentClientApi.Commands {
 
     /// <summary>
     /// Тип возвращаемых данных:
-    /// PAYLOAD — в ответе возвращается только.
+    /// PAYLOAD — в ответе возвращается только Payload.
     /// IMAGE — в ответе возвращается SVG изображение QR.
     /// </summary>
     /// <remarks>
     /// Requirements: [PAYLOAD, IMAGE]. Default: PAYLOAD
     /// </remarks>
-    public string DataType { get; set; } = "PAYLOAD";
+    public EDataTypeQR DataType { get; set; } =  EDataTypeQR.PAYLOAD;
 
     /// <summary>
     /// Внутренний идентификатор банка, который выбран для оплаты.
