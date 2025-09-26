@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using TinkoffPaymentClientApi.Enums;
+﻿using TinkoffPaymentClientApi.Enums;
 
 namespace TinkoffPaymentClientApi.ResponseEntity {
   /// <summary>
