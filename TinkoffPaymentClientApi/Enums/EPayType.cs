@@ -1,16 +1,23 @@
-﻿using Newtonsoft.Json;
+﻿using System.Runtime.Serialization;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace TinkoffPaymentClientApi.Enums {
+  /// <summary>
+  /// Определяет тип проведения платежа
+  /// </summary>
   [JsonConverter(typeof(StringEnumConverter))]
   public enum EPayType {
     /// <summary>
     /// Одностадийная
     /// </summary>
-    O = 1,
+    [EnumMember(Value = "O")]
+    OneStagePayment = 1,
+
     /// <summary>
-    /// Двухстадийная
+    /// Двух-стадийная
     /// </summary>
-    T
+    [EnumMember(Value = "T")]
+    TwoStagePayment
   }
 }
