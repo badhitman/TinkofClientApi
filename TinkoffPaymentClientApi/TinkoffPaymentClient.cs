@@ -31,13 +31,9 @@ namespace TinkoffPaymentClientApi {
 
     const string DefaultBaseUrl = "https://securepay.tinkoff.ru/v2/";
 
-    public TinkoffPaymentClient(string terminalKey, string password) : this(DefaultHttpClient, DefaultBaseUrl, terminalKey, password) {
-    }
-
-    public TinkoffPaymentClient(HttpClient httpClient, string terminalKey, string password) : this(httpClient, DefaultBaseUrl, terminalKey, password) {
-    }
-    public TinkoffPaymentClient(string baseUrl, string terminalKey, string password) : this(DefaultHttpClient, baseUrl, terminalKey, password) {
-    }
+    public TinkoffPaymentClient(string terminalKey, string password) : this(DefaultHttpClient, DefaultBaseUrl, terminalKey, password) { }
+    public TinkoffPaymentClient(HttpClient httpClient, string terminalKey, string password) : this(httpClient, DefaultBaseUrl, terminalKey, password) { }
+    public TinkoffPaymentClient(string baseUrl, string terminalKey, string password) : this(DefaultHttpClient, baseUrl, terminalKey, password) { }
 
     public TinkoffPaymentClient(HttpClient httpClient, string baseUrl, string terminalKey, string password) {
       if (string.IsNullOrEmpty(terminalKey)) {
@@ -76,6 +72,7 @@ namespace TinkoffPaymentClientApi {
     public PaymentResponse Charge(Charge charge)
       => Post<Charge, PaymentResponse>(charge);
 
+    #region QR СБП (НСПК)
     /// <summary>
     /// Сформировать QR
     /// </summary>
@@ -93,6 +90,19 @@ namespace TinkoffPaymentClientApi {
     /// <inheritdoc cref="GetQrBankListAsync(Commands.GetQrBankList, CancellationToken)"/>
     public QrBankListResponse GetQrBankList(GetQrBankList qr)
       => Post<GetQrBankList, QrBankListResponse>(qr);
+    #endregion
+
+    /// <summary>
+    /// Получить DeepLink
+    /// </summary>
+    /// <remarks>
+    /// Метод позволяет получить DeepLink с включенным подписанным JWT-токеном.
+    /// </remarks>
+    public Task<MirPayDeepLinkResponse> MirPayDeepLinkResponseAsync(GetDeepLinkMirPay req, CancellationToken token = default)
+      => PostAsync<GetDeepLinkMirPay, MirPayDeepLinkResponse>(req, token);
+    /// <inheritdoc cref="MirPayDeepLinkResponseAsync(Commands.GetDeepLinkMirPay, CancellationToken)"/>
+    public MirPayDeepLinkResponse MirPayDeepLinkResponse(GetDeepLinkMirPay req)
+      => Post<GetDeepLinkMirPay, MirPayDeepLinkResponse>(req);
 
     /// <summary>
     /// Подтверждает платеж и списывает ранее заблокированные средства.

@@ -24,7 +24,7 @@ namespace TinkoffPaymentClientApi.Commands {
     /// <remarks>
     /// Requirements: [PAYLOAD, IMAGE]. Default: PAYLOAD
     /// </remarks>
-    public EDataTypeQR DataType { get; set; } =  EDataTypeQR.PAYLOAD;
+    public EDataTypeQR DataType { get; set; } = EDataTypeQR.PAYLOAD;
 
     /// <summary>
     /// Внутренний идентификатор банка, который выбран для оплаты.
