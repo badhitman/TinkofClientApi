@@ -71,7 +71,7 @@ namespace TinkoffPaymentClientApi {
 
       using HttpRequestMessage request = BuildPostRequest(parameter, json, out var requestBody);
       using HttpResponseMessage response = await _httpClient.SendAsync(request, token);
-      return ProcessResponse<T, E>((int)response.StatusCode, requestBody, await response.Content.ReadAsStreamAsync());
+      return ProcessResponse<T, E>((int)response.StatusCode, requestBody, await response.Content.ReadAsStreamAsync(token));
     }
 
     HttpRequestMessage BuildPostRequest<T>(T parameter, bool json, out string requestBody)
