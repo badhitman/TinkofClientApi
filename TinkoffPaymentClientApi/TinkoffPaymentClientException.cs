@@ -35,19 +35,11 @@ namespace TinkoffPaymentClientApi {
 
     protected TinkoffPaymentClientException(
       SerializationInfo info,
-      StreamingContext context) : base(info, context) {
+      StreamingContext context) : base() {
       BaseUrl = info.GetString(nameof(BaseUrl))!;
       StatusCode = info.GetInt32(nameof(StatusCode))!;
       Request = info.GetString(nameof(Request))!;
       Response = info.GetString(nameof(Response))!;
-    }
-
-    public override void GetObjectData(SerializationInfo info, StreamingContext context) {
-      base.GetObjectData(info, context);
-      info.AddValue(nameof(BaseUrl),BaseUrl);
-      info.AddValue(nameof(StatusCode),StatusCode);
-      info.AddValue(nameof(Request),Request);
-      info.AddValue(nameof(Response),Response);
     }
 
     /// <summary>
